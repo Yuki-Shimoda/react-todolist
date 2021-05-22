@@ -1,18 +1,12 @@
-//2.stateの更新
-import { ADDTODO, DELTODO } from '../actions'
+//2.stateの更新 reducers
+import { ADDTODO } from '../actions'
 
-const initialState = {
-    todos: []
-}
-//const initialState = { val: 0 }
+const initialState = { todos: [] }
 
-export default (state = initialState, action) => {
+export default  (state = initialState, action) => {
     switch (action.type) {
         case ADDTODO:
-            const newList = [...state,{id: action.id, text: action.text}] //typeがADDTODOならtodos配列にadd処理
-            return newList;
-        case DELTODO:
-            return state + 1; //typeがDELTODOならtodos配列からdelete処理
+            return { todos: state.todos.push({ id: 1, text: 'aaa' }, { id: 2, text: 'aaa' }) }
         default:
             return state;
     }

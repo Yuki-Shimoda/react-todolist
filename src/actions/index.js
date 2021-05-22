@@ -1,16 +1,12 @@
-//1.アクションを定義
+//アクションを定義
+//actions App.jsでイベントが起きたらここのオブジェクト内容をReducerに受け渡す
 export const ADDTODO = 'addTodo'
 export const DELTODO = 'delTodo'
 
 let nextTodoId = 0
-export const addTodo = (text) => {
-    return {
+export const addTodo = () => ({
         type: ADDTODO,
-        list: { id:nextTodoId, text: text }
-    }
-}
-export const delTodo = () => {
-    return {
+})
+export const delTodo = () => ({
         type: DELTODO
-    }
-}
+})
