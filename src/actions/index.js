@@ -4,9 +4,12 @@ export const ADDTODO = 'addTodo'
 export const DELTODO = 'delTodo'
 
 let nextTodoId = 0
-export const addTodo = () => ({
+export const addTodo = (text) => ({
         type: ADDTODO,
+        id: nextTodoId++,
+        text:text
 })
-export const delTodo = () => ({
-        type: DELTODO
+export const delTodo = (id) => ({
+        type: DELTODO,
+        id:id
 })
