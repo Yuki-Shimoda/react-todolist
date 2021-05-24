@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { addTodo,delTodo } from '../actions';
+import { addTodo,　delTodo, doneTodo } from '../actions';
 import todos from "../reducers/addDel";
 
 const App = (props) => {
-  console.log(props.todos)
-
   return (
  //propsでconnect(親）からstateの値を受け取る　受け取りたいのは配列
     <React.Fragment>
-      <h1>todoリスト</h1>
+      <h1>Todoリスト</h1>
       <input />
       <button onClick={(e) => {
         props.addTodo(e);
@@ -17,22 +15,33 @@ const App = (props) => {
       }}>追加</button>
       
       <ul>
-        {console.log(props.todos)}
-        {props.todos.map((todo, index) => { return (<li key={index}>{todo.text}<button onClick={() => { props.delTodo(index) }}>削除</button></li>) })}
+        {props.todos.map((todo) => {
+          return (
+            <li key={todo.id}>
+            <label></label>
+              <input type='checkbox' onChange={() => { props.doneTodo(todo) }} ></input>
+              {todo.done ? <del>{ todo.text }</del> : <span>{todo.text}</span>}
+            <button onClick={() => { props.delTodo(todo) }}>削除</button>
+            </li>
+          )
+        })}
       </ul>
     </React.Fragment>
   )
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return (
   { todos: state.addDel}
   )
 }
 const mapDispatchToProps = dispatch => ({
   addTodo: (e) => dispatch(addTodo(e.target.previousElementSibling.value)),
-  delTodo: (key) => dispatch(delTodo(key.Element))
+  delTodo: (todo) => dispatch(delTodo(todo)),
+  doneTodo: (todo) => dispatch(doneTodo(todo))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+<style>
+</style>
