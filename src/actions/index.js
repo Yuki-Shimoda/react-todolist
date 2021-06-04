@@ -5,11 +5,12 @@ export const DELTODO = 'delTodo'
 export const DONETODO = 'doneTodo'
 
 let nextTodoId = 0
-export const addTodo = (text) => {
+export const addTodo = (todo) => {
+        console.log(todo);
         return ({
         type: ADDTODO,
         id:  nextTodoId++,
-        text: text,
+        text: todo.text,
         done: false
         })
 }
@@ -22,8 +23,10 @@ export const delTodo = (todo) => {
         })
 }
 export const doneTodo = (todo) => {
+        console.log(todo)
         return ({
         type: DONETODO,
-        id:todo.id
+        id: todo.id,
+        done:todo.done
         })
 }

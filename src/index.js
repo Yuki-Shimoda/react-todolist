@@ -6,7 +6,6 @@ import reducer from './reducers'
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import { addTodo } from './actions';
 
 const store = createStore(reducer)
 
